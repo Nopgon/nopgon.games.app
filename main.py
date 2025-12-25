@@ -118,3 +118,22 @@ class MemoryGame(BaseGame):
         if int(btn.text) == self.answer:
             self.score += 1
         self.end_game("기억력")
+from kivy.app import App
+from kivy.uix.screenmanager import ScreenManager
+
+class GameApp(App):
+    def build(self):
+        sm = ScreenManager()
+
+        sm.add_widget(ReactionGame(name="reaction"))
+        sm.add_widget(MoleGame(name="mole"))
+        sm.add_widget(NumberGame(name="number"))
+        sm.add_widget(MemoryGame(name="memory"))
+
+        # 임시 시작 화면 (첫 화면)
+        sm.current = "reaction"
+        return sm
+
+if __name__ == "__main__":
+    GameApp().run()
+
